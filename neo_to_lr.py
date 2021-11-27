@@ -1,6 +1,6 @@
 #!C:\Users\ragha\AppData\Local\Programs\Python\Python39\python.exe
 
-from datetime import datetime
+import datetime
 import sys
 import re
 import datetime
@@ -42,7 +42,6 @@ summary_mapping = {
                      'Name': 'Run ID',                              #covert to DDHHSS format                    
                      'Status': 'Status',
                      'Duration': 'Duration',
-                     'Total request errors': 'Script Errors',
                      'Start date': 'Date',                          # strip Date
                      'End date': 'Time',                            # fetch time form start date
                      'Filters': 'Time Range',                        # strip time range
@@ -53,7 +52,8 @@ summary_mapping = {
                      'Total requests': 'Total Hits',
                      'Total pages': 'Passed Transactions',
                      'Total action errors': 'Failed Transactions',  # replace with Total request errors
-                     'Total users launched': 'Total WEB Vusers'     # pass from command line
+                     'Total users launched': 'Total WEB Vusers',    # pass from command line
+                     'Total request errors': 'Script Errors'
                   }              
 
 trans_mapping = {
@@ -140,8 +140,11 @@ for mapping_key in summary_mapping.keys():
     elif summary_key == 'Total WEB Vusers':
         summary_val = str(no_of_users) 
     elif summary_key == 'Run ID':
-        #date_res = re.findall(r"(\d{2}):(\d{2}).*(\d{2}).*(\w{3]).*(\d{4})}) ",summary_hash[mapping_key])
-        #summary_val = str(date_res[0][0])+str(date_res[0][1])
+        ####YYYYMMDDHHSS date format
+        #date_res = re.findall(r"(\d{2}):(\d{2}) - (\d{2}) (\w{3}) (\d{4})",summary_hash[mapping_key])
+        #datetime_object = datetime.datetime.strptime(str(date_res[0][3]), "%b")
+        #month_number = datetime_object.month
+        #summary_val = '#' + str(date_res[0][4]) + str("{:02d}".format(month_number))+ str(date_res[0][2]) + str(date_res[0][0])+str(date_res[0][1])
         summary_val = str(summary_hash[mapping_key])
     else:
         summary_val = str(summary_hash[mapping_key])
