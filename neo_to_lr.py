@@ -12,6 +12,10 @@ import pandas as pd
 # Command Line Argumnets
 # python.exe .\neo_to_lr.py Policy_4_2_report 10 10
 #################################################################
+if len(sys.argv) <= 3:
+    print("Usage: python.exe neo_to_lr.py <input_file> <no_of_users> <no_of_tables")
+    print("python.exe neo_to_lr.py Policy_4_2_report 10 10")
+    exit()
 input_file = sys.argv[1]
 no_of_users = sys.argv[2]
 no_of_tables = sys.argv[3]
